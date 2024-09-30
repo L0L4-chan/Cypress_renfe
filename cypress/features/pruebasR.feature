@@ -1,6 +1,6 @@
 Feature: Navigation on the website as guest
 Scenario: Access to home page
-    Given I introduce de url on my browser
+    Given I introduce the url on my browser
     When I reject the cookie settings
     Then I access to the home page
 
@@ -54,3 +54,4 @@ Scenario: buy a ticket
     When I choose a ticket 
     And fill up the form
     Then I am redirect to the payment page
+    
