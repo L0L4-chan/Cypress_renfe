@@ -8,7 +8,6 @@ passCookieSettings(){
         cy.stub(win, 'prompt').returns('gfg');
         cy.get('#onetrust-reject-all-handler').click();
 
- });
-}
+ });}
 
 }
