@@ -1,5 +1,4 @@
-Feature: Navigation on the website
-
+Feature: Navigation on the website as guest
 Scenario: Access to home page
     Given I introduce de url on my browser
     When I reject the cookie settings
@@ -49,3 +48,9 @@ Scenario: Search for a itinerary
     And introduce the necessary info
     * press "Buscar billete"
     Then I see differents options
+
+Scenario: buy a ticket
+    Given tha I can see differents options
+    When I choose a ticket 
+    And fill up the form
+    Then I am redirect to the payment page
