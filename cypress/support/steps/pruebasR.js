@@ -9,4 +9,6 @@ Given('I introduce the url on my browser',  aux.goToHomePage());
 
 When('I reject the cookie settings', aux.passCookieSettings());
 
-Then('I access to the home page', cy.get('#onetrust-banner-sdk').should('not.be.visible'));
+Then('I access to the home page', ()=>{
+    cy.get('#onetrust-banner-sdk').should('not.be.visible')
+});
