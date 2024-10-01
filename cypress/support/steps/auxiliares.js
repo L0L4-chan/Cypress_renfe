@@ -10,4 +10,10 @@ passCookieSettings(){
 
  });}
 
+
+
+clickOnLanguages(){
+cy.get('.rf-language-submenu__icon icon-lenguage sc-rf-language-submenu').click();
+cy.get('#LanguageList').should('be.visible');
+}
 }

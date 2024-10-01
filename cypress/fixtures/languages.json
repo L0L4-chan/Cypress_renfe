@@ -1,0 +1,43 @@
+[{
+
+    "Language1": "es",
+    "Language2": "English",
+    "code":"en"
+},
+{
+
+    "Language1": "en",
+    "Language2": "French",
+    "code":"fr"
+},
+{
+
+    "Language1": "fr",
+    "Language2": "Galician",
+    "code":"gl"
+},
+{
+
+    "Language1": "gl",
+    "Language2": "Basque",
+    "code":"eu"
+},
+{
+
+    "Language1": "eu",
+    "Language2": "Valencian",
+    "code":"va"
+},
+{
+
+    "Language1": "va",
+    "Language2": "Catalan",
+    "code":"ca"
+},
+{
+
+    "Language1": "ca",
+    "Language2": "Spanish",
+    "code":"es"
+}
+]
