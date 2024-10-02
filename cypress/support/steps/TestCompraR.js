@@ -62,5 +62,30 @@ And('press "Buscar billete"', ()=>{
 } )
 
 Then('I see differents options', ()=>{
-    cy.get('#listaTrenerTBodyIda').should('be.visible');
+    cy.get('#stv-ida').should('be.visible');
+})
+
+
+Given('I am on a renfe page', ()=>{
+    aux.goToHomePage();
+    aux.passCookieSettings();
+
+
+})
+
+When('I  click on "Más opciones de búsqueda"', ()=>{
+    
+})
+
+And('I introduce the necessary info', ()=>{
+    aux.fillUpTravelInfo();
+} )
+
+And('press "Buscar billete"', ()=>{
+  
+    cy.get('#ticketSearchBt > div > div > button > div.mdc-button__touch.sc-rf-button').click();
+} )
+
+Then('I see differents options', ()=>{
+    cy.get('#stv-ida').should('be.visible');
 })
