@@ -25,6 +25,12 @@ Scenario: Simple search for a itinerary
     And press "Buscar billete"
     Then I see differents options
     
+Scenario: Search for a itinerary 
+    Given I am on a renfe web site
+    When I  click on "Más opciones de búsqueda"
+    And introduce the necessary info
+    * press "Buscar billete"
+    Then I see differents options
 
 
     

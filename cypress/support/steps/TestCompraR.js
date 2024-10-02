@@ -19,6 +19,7 @@ Then('I access to the home page', ()=>{
     cy.get('#onetrust-banner-sdk').should('not.be.visible');
 });
 
+
 Given('I am on the "<Language1>" setting',()=>{
         aux.goToHomePage();
         aux.passCookieSettings();
