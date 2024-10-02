@@ -2,44 +2,51 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 import { Compras } from './compras';
 
-const aux =  new Compras()
-const data = cy.fixture('languages.json')
+const aux =  new Compras();
+
+let fixtureData;
 
 Given('I introduce the url on my browser',  ()=>
 {
-    aux.goToHomePage()
+    aux.goToHomePage();
 });
 
 When('I reject the cookie settings', ()=>{
-    aux.passCookieSettings()
+    aux.passCookieSettings();
 });
 
 Then('I access to the home page', ()=>{
-    cy.get('#onetrust-banner-sdk').should('not.be.visible')
+    cy.get('#onetrust-banner-sdk').should('not.be.visible');
 });
 
 Given('I am on the "<Language1>" setting',()=>{
-
-    cy.url().endWith(data.Language1);
-} )
+        aux.goToHomePage();
+        aux.passCookieSettings();
+        cy.fixture('languages.json').then((fixtureData) =>{
+        cy.url().should('include', fixtureData.Language1);
+    })
+})
 
 When('I click on the language icon',()=>{
-aux.clickOnLanguages(data);
+    aux.clickOnLanguages();
     
 } )
 
 And('select "<Language2>"',()=>{
-
-    cy.get(data.Language2).click();
+    cy.fixture('languages.json').then((fixtureData) =>{
+    cy.get( '#languageList > li:nth-child(6) > a').click();
+})
 })
 
 Then('the url ends with "<code>"',()=>{
-
-    cy.url().endWith(data.code);
+    cy.fixture('languages.json').then((fixtureData) =>{
+        cy.url().should('include', fixtureData.code)
+})
 })
 
 Given('I am on a page in the renfe web site', ()=>{
     aux.goToHomePage();
+    aux.passCookieSettings();
 
 
 })
@@ -50,7 +57,7 @@ When('I introduce the necessary info', ()=>{
 
 And('press "Buscar billete"', ()=>{
   
-    cy.get('.mdc-button_touchsc-rf-button').click();
+    cy.get('#ticketSearchBt > div > div > button > div.mdc-button__touch.sc-rf-button').click();
 } )
 
 Then('I see differents options', ()=>{
