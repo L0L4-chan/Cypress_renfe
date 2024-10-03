@@ -74,10 +74,11 @@ Given('I am on a renfe page', ()=>{
 })
 
 When('I  click on "Más opciones de búsqueda"', ()=>{
-    
+    cy.get('#search-more').click({force: true});
 })
 
-And('I introduce the necessary info', ()=>{
+And('introduce the necessary info', ()=>{
+    cy.get('#rf-check-box-trip-enlace > div > div > div > label').click({force: true});
     aux.fillUpTravelInfo();
 } )
 

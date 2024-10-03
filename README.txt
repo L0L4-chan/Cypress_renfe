@@ -12,3 +12,4 @@ Commands
 The test will cover:
 
 A search for an itinerary using the simple and advanced searcher.
+Language exchange
