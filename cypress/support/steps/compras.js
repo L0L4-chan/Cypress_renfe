@@ -1,7 +1,7 @@
 export class Compras{
 
-goToHomePage(){
-    cy.visit('https://www.renfe.com/es/es');
+goToHomePage(end){
+    cy.visit('https://www.renfe.com/es/'+end);
 }
 
 passCookieSettings(){

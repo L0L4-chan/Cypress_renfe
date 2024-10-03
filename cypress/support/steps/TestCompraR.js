@@ -8,7 +8,7 @@ let fixtureData;
 
 Given('I introduce the url on my browser',  ()=>
 {
-    aux.goToHomePage();
+    aux.goToHomePage('es');
 });
 
 When('I reject the cookie settings', ()=>{
@@ -20,33 +20,32 @@ Then('I access to the home page', ()=>{
 });
 
 
-Given('I am on the "<Language1>" setting',()=>{
-        aux.goToHomePage();
+Given('I am on the {string} setting',(languaje1)=>{
+    
+        aux.goToHomePage(languaje1);
         aux.passCookieSettings();
-        cy.fixture('languages.json').then((fixtureData) =>{
-        cy.url().should('include', fixtureData.Language1);
+       
+        cy.url().should('include', languaje1);
     })
-})
 
 When('I click on the language icon',()=>{
     aux.clickOnLanguages();
     
 } )
 
-And('select "<Language2>"',()=>{
-    cy.fixture('languages.json').then((fixtureData) =>{
-    cy.get( '#languageList > li:nth-child(6) > a').click();
-})
+And('select {string}',(lenguaje2)=>{
+    
+    cy.get( '#languageList > li:nth-child('+ lenguaje2 +') > a').click();
 })
 
-Then('the url ends with "<code>"',()=>{
-    cy.fixture('languages.json').then((fixtureData) =>{
-        cy.url().should('include', fixtureData.code)
-})
+
+Then('the url ends with {string}',(code)=>{
+   
+        cy.url().should('include',code )
 })
 
 Given('I am on a page in the renfe web site', ()=>{
-    aux.goToHomePage();
+    aux.goToHomePage('es');
     aux.passCookieSettings();
 
 
@@ -67,7 +66,7 @@ Then('I see differents options', ()=>{
 
 
 Given('I am on a renfe page', ()=>{
-    aux.goToHomePage();
+    aux.goToHomePage('es');
     aux.passCookieSettings();
 
 

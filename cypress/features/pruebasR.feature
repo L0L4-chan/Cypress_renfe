@@ -4,20 +4,22 @@ Scenario: Access to home page
     When I reject the cookie settings
     Then I access to the home page
 
-Scenario: Select language
+Scenario Outline: Select language
     Given I am on the "<Language1>" setting
     When I click on the language icon
     And select "<Language2>"
     Then the url ends with "<code>"
-
+Examples:
     |Language1|Language2|code|
-    |Spanish|English|en|
-    |English|French|fr|
-    |French|Galician|gl|
-    |Galician|Basque|eu|
-    |Basque|Valencian|va|
-    |Valencian|Catalan|ca|
-    |Catalan|Spanish|es|
+    |es       |6        |en  |
+    |en       |7        |fr  |
+    |fr       |5        |gl  |
+    |gl       |4        |eu  |
+    |eu       |3        |va  |
+    |va       |2        |ca  |
+    |ca       |1        |es  |
+
+
 
 Scenario: Simple search for a itinerary 
     Given I am on a page in the renfe web site
