@@ -49,7 +49,7 @@ Given('I am on a page in the renfe web site', ()=>{
 
 
 })
-
+//TODO: COMPLETAR CLASES AUXILIARES Y SUS LLAMADAS AQUI
 When('I introduce the necessary info', ()=>{
     usuario.paraComprar.fillUpTravelInfo();
 } )
@@ -88,3 +88,5 @@ And('press "Buscar billete"', ()=>{
 Then('I see differents options', ()=>{
     cy.get('#stv-ida').should('be.visible');
 })
+
+//TODO CASOS DE NAVEGACIÓN Y FAIL LOGIN
