@@ -1,4 +1,6 @@
 Feature: Navigation on the website as guest
+
+@focus
 Scenario: Access to home page
     Given I introduce the url on my browser
     When I reject the cookie settings
@@ -11,13 +13,13 @@ Scenario Outline: Select language
     Then the url ends with "<code>"
 Examples:
     |Language1|Language2|code|
-    |es       |6        |en  |
-    |en       |7        |fr  |
-    |fr       |5        |gl  |
-    |gl       |4        |eu  |
-    |eu       |3        |va  |
-    |va       |2        |ca  |
-    |ca       |1        |es  |
+    |es       |5        |en  |
+    |en       |6        |fr  |
+    |fr       |4        |gl  |
+    |gl       |3        |eu  |
+    |eu       |2        |va  |
+    |va       |1        |ca  |
+    |ca       |0        |es  |
 
 
 

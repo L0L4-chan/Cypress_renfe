@@ -1,58 +1,57 @@
 
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
-import { Compras } from './compras';
+import { User } from '../const/user';
 
-const aux =  new Compras();
 
-let fixtureData;
+const usuario = new User();
+
 
 Given('I introduce the url on my browser',  ()=>
 {
-    aux.goToHomePage('es');
+    usuario.paraIrHomepage.goToHomePage('es');
 });
 
 When('I reject the cookie settings', ()=>{
-    aux.passCookieSettings();
+    usuario.paraIrHomepage.passCookieSettings();
 });
 
 Then('I access to the home page', ()=>{
-    cy.get('#onetrust-banner-sdk').should('not.be.visible');
+    usuario.paraIrHomepage.checkCookiesClose();
+    usuario.paraIrHomepage.checkHomePage();
 });
 
 
 Given('I am on the {string} setting',(languaje1)=>{
     
-        aux.goToHomePage(languaje1);
-        aux.passCookieSettings();
-       
-        cy.url().should('include', languaje1);
+    usuario.paraIrHomepage.goToHomePage(languaje1);
+    usuario.paraIrHomepage.passCookieSettings();
+    usuario.paraLenguajes.checkLanguajeWeAreOn(languaje1);
     })
 
 When('I click on the language icon',()=>{
-    aux.clickOnLanguages();
+    usuario.paraLenguajes.clickOnLanguages();
     
 } )
 
-And('select {string}',(lenguaje2)=>{
+And('select {string}',(languaje2)=>{
     
-    cy.get( '#languageList > li:nth-child('+ lenguaje2 +') > a').click();
+    usuario.paraLenguajes.changeLanguage(languaje2);
 })
 
 
 Then('the url ends with {string}',(code)=>{
-   
-        cy.url().should('include',code )
+    usuario.paraLenguajes.checkLanguajeWeAreOn(code);
 })
 
 Given('I am on a page in the renfe web site', ()=>{
-    aux.goToHomePage('es');
-    aux.passCookieSettings();
+    usuario.paraIrHomepage.checkCookiesClose();
+    usuario.paraIrHomepage.checkHomePage();
 
 
 })
 
 When('I introduce the necessary info', ()=>{
-    aux.fillUpTravelInfo();
+    usuario.paraComprar.fillUpTravelInfo();
 } )
 
 And('press "Buscar billete"', ()=>{
@@ -66,8 +65,8 @@ Then('I see differents options', ()=>{
 
 
 Given('I am on a renfe page', ()=>{
-    aux.goToHomePage('es');
-    aux.passCookieSettings();
+    usuario.paraIrHomepage.checkCookiesClose();
+    usuario.paraIrHomepage.checkHomePage();
 
 
 })
