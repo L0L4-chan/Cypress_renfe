@@ -111,9 +111,26 @@ And('press enter', ()=>{
     usuario.paraLogin.logIn();
 })
 
+When('I solve the captcha', () => {
+   
+  });
+
 Then('I got a error message',()=>{
     usuario.paraLogin.errorWarning();
 })
 
 
-//TODO CASOS DE NAVEGACIÓN 
+Given('I am on a Renfe homepage',()=>{
+    usuario.paraIrHomepage.goToHomePage('es');
+    usuario.paraIrHomepage.passCookieSettings();
+    usuario.paraIrHomepage.checkHomePage();
+})
+
+When('I press {string}',(key)=>{
+    usuario.paraNavegar.goTo(key);
+
+})
+
+Then('I visit the {string} page',(value)=>{
+    usuario.paraNavegar.checkDestination(value);
+})

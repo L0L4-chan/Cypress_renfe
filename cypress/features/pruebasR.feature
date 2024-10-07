@@ -49,7 +49,7 @@ Feature: Navigation on the website as guest
       | 1       | 2        | 17   | 20      |       |           |          | H   | asistencia |           |         |              |            |
 
 
-@focus
+
 Scenario Outline: Login
     Given I selected log in
     When I introduce wrong "<user>"
@@ -61,3 +61,13 @@ Examples:
     | user            | password   |
     | pepe@gmail.com  | 123456Ee   |
     | pepe2@gmail.com | 123456Ee   |
+
+@focus
+Scenario Outline: Surfing
+    Given I am on a Renfe homepage
+    When I press "<Key>"
+    Then I visit the "<Value>" page
+
+Examples:
+    | Key         | Value       |
+    | 2           |descuentos   |
