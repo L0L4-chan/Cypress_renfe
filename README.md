@@ -9,6 +9,9 @@ Commands
 - npm i -D cucumber cucumber-tsflow cucumber-pretty ts-node typescript chai
 - npm i -D @types/cucumber @types/chai
 
+
+Marked with @focus to execute some test only.
+
 The test will cover:
 
 A search for an itinerary using the simple and advanced searcher.

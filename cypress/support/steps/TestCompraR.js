@@ -15,7 +15,7 @@ When('I reject the cookie settings', ()=>{
     usuario.paraIrHomepage.passCookieSettings();
 });
 
-Then('I access to the home page', ()=>{
+Then('I access the home page', ()=>{
     usuario.paraIrHomepage.checkCookiesClose();
     usuario.paraIrHomepage.checkHomePage();
 });
@@ -43,50 +43,50 @@ Then('the url ends with {string}',(code)=>{
     usuario.paraLenguajes.checkLanguajeWeAreOn(code);
 })
 
-Given('I am on a page in the renfe web site', ()=>{
-    usuario.paraIrHomepage.checkCookiesClose();
-    usuario.paraIrHomepage.checkHomePage();
-
-
-})
-//TODO: COMPLETAR CLASES AUXILIARES Y SUS LLAMADAS AQUI
-When('I introduce the necessary info', ()=>{
-    usuario.paraComprar.fillUpTravelInfo();
-} )
-
-And('press "Buscar billete"', ()=>{
-  
-    cy.get('#ticketSearchBt > div > div > button > div.mdc-button__touch.sc-rf-button').click();
-} )
-
-Then('I see differents options', ()=>{
-    cy.get('#stv-ida').should('be.visible');
-})
-
-
-Given('I am on a renfe page', ()=>{
-    usuario.paraIrHomepage.checkCookiesClose();
+Given('I am on a page in the Renfe website', ()=>{
+    usuario.paraIrHomepage.goToHomePage('es');
     usuario.paraIrHomepage.checkHomePage();
 
 
 })
 
-When('I  click on "Más opciones de búsqueda"', ()=>{
-    cy.get('#search-more').click({force: true});
+When('I introduce the necessary info: {string}, {string}, {string}, {string}, {string}, {string}', (origen, destino, ida, vuelta, typo, pasajero)=>{
+    usuario.paraComprar.fillUpTravelInfo(origen, destino, ida, vuelta, typo, pasajero);
+} )
+
+And('I press "Buscar billete"', ()=>{
+  
+    usuario.paraComprar.startSearch();
+} )
+
+Then('I see different options', ()=>{
+    usuario.paraComprar.checkForResults();
 })
 
-And('introduce the necessary info', ()=>{
-    cy.get('#rf-check-box-trip-enlace > div > div > div > label').click({force: true});
-    aux.fillUpTravelInfo();
+
+Given('I am on a Renfe page', ()=>{
+    usuario.paraIrHomepage.goToHomePage('es');
+    usuario.paraIrHomepage.checkHomePage();
+
+
+})
+
+When('I click on "Más opciones de búsqueda"', ()=>{
+    usuario.paraComprar.advanceOptions();
+})
+
+And('I introduce the necessary info: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}', (origen2,destino2,ida2,vuelta2,tipo2,pasajero2,link,h,asistencia,idaMinima,horaIda,vueltaMinima,horaVuelta)=>{
+    usuario.paraComprar.selectAdvances(link,h,asistencia,idaMinima,horaIda,vueltaMinima,horaVuelta);
+    usuario.paraComprar.fillUpTravelInfo(origen2,destino2,ida2,vuelta2,tipo2,pasajero2);
 } )
 
-And('press "Buscar billete"', ()=>{
-  
-    cy.get('#ticketSearchBt > div > div > button > div.mdc-button__touch.sc-rf-button').click();
+And('I press "Buscar billete"', ()=>{
+    usuario.paraComprar.startSearch();
+   
 } )
 
-Then('I see differents options', ()=>{
-    cy.get('#stv-ida').should('be.visible');
+Then('I see different options', ()=>{
+    usuario.paraComprar.checkForResults();
 })
 
 //TODO CASOS DE NAVEGACIÓN Y FAIL LOGIN

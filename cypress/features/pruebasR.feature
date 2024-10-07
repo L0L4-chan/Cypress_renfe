@@ -1,40 +1,49 @@
 Feature: Navigation on the website as guest
 
-@focus
-Scenario: Access to home page
+
+  Scenario: Access to home page
     Given I introduce the url on my browser
     When I reject the cookie settings
-    Then I access to the home page
+    Then I access the home page
 
-Scenario Outline: Select language
+  Scenario Outline: Select language
     Given I am on the "<Language1>" setting
     When I click on the language icon
     And select "<Language2>"
     Then the url ends with "<code>"
-Examples:
-    |Language1|Language2|code|
-    |es       |5        |en  |
-    |en       |6        |fr  |
-    |fr       |4        |gl  |
-    |gl       |3        |eu  |
-    |eu       |2        |va  |
-    |va       |1        |ca  |
-    |ca       |0        |es  |
+
+    Examples:
+      | Language1 | Language2 | code |
+      | es        | 5         | en   |
+      | en        | 6         | fr   |
+      | fr        | 4         | gl   |
+      | gl        | 3         | eu   |
+      | eu        | 2         | va   |
+      | va        | 1         | ca   |
+      | ca        | 0         | es   |
 
 
+ 
+  Scenario Outline: Simple search for an itinerary
+    Given I am on a page in the Renfe website
+    When I introduce the necessary info: "<origen>", "<destino>", "<ida>", "<vuelta>", "<tipo>", "<pasajero>"
+    And I press "Buscar billete"
+    Then I see different options
 
-Scenario: Simple search for a itinerary 
-    Given I am on a page in the renfe web site
-    When I introduce the necessary info
-    And press "Buscar billete"
-    Then I see differents options
-    
-Scenario: Search for a itinerary 
-    Given I am on a renfe page
-    When I  click on "Más opciones de búsqueda"
-    And introduce the necessary info
-    * press "Buscar billete"
-    Then I see differents options
+    Examples:
+      | origen | destino | ida | vuelta | tipo | pasajero |
+      | 0      | 2       | 16  | 19     |      |          |
+      | 1      | 2       | 17  | 20     |      |          |
+ 
+  @focus
+  Scenario Outline: Search for an itinerary with more options
+    Given I am on a Renfe page
+    When I click on "Más opciones de búsqueda"
+    And I introduce the necessary info: "<origen2>", "<destino2>", "<ida2>", "<vuelta2>", "<tipo2>", "<pasajero2>", "<link>", "<h>", "<asistencia>", "<idaMinima>", "<horaIda>", "<vueltaMinima>", "<horaVuelta>"
+    And I press "Buscar billete"
+    Then I see different options
 
-
-    
+    Examples:
+      | origen2 | destino2 | ida2 | vuelta2 | tipo2 | pasajero2 | link     | h   | asistencia | idaMinima | horaIda | vueltaMinima | horaVuelta |
+      | 0       | 2        | 16   | 19      |       |           | sinEnlace|     |            |           |         |              |            |
+      | 1       | 2        | 17   | 20      |       |           |          | H   | asistencia |           |         |              |            |
