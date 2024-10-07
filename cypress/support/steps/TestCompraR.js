@@ -92,6 +92,7 @@ Then('I see different options', ()=>{
 
 Given('I selected log in',()=>{
     usuario.paraIrHomepage.goToHomePage('es');
+    usuario.paraIrHomepage.passCookieSettings();
     usuario.paraIrHomepage.checkHomePage();
     usuario.paraIrHomepage.pressLogIn();
     usuario.paraLogin.checkLogInpage();

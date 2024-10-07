@@ -52,8 +52,8 @@ Feature: Navigation on the website as guest
 @focus
 Scenario Outline: Login
     Given I selected log in
-    When I introduce wrong <user>
-    And <password>
+    When I introduce wrong "<user>"
+    And "<password>"
     * press enter
     Then I got a error message
 
