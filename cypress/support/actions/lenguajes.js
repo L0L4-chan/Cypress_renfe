@@ -2,7 +2,7 @@ export class Lenguajes {
 elements={
     menuIdiomas : () => cy.get('button[aria-label="Selector de idiomas"]'),
     listaIdiomas : () =>   cy.get('#languageList'),
-    direccion : () =>  cy.url(),
+    direccion : () =>  cy.url()
    
 }
 

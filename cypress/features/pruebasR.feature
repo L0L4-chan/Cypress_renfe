@@ -35,7 +35,7 @@ Feature: Navigation on the website as guest
       | 0      | 2       | 16  | 19     |      |          |
       | 1      | 2       | 17  | 20     |      |          |
  
-  @focus
+  
   Scenario Outline: Search for an itinerary with more options
     Given I am on a Renfe page
     When I click on "Más opciones de búsqueda"
@@ -47,3 +47,17 @@ Feature: Navigation on the website as guest
       | origen2 | destino2 | ida2 | vuelta2 | tipo2 | pasajero2 | link     | h   | asistencia | idaMinima | horaIda | vueltaMinima | horaVuelta |
       | 0       | 2        | 16   | 19      |       |           | sinEnlace|     |            |           |         |              |            |
       | 1       | 2        | 17   | 20      |       |           |          | H   | asistencia |           |         |              |            |
+
+
+@focus
+Scenario Outline: Login
+    Given I selected log in
+    When I introduce wrong <user>
+    And <password>
+    * press enter
+    Then I got a error message
+
+Examples:
+    | user            | password   |
+    | pepe@gmail.com  | 123456Ee   |
+    | pepe2@gmail.com | 123456Ee   |

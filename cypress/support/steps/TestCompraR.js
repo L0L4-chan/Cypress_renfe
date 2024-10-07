@@ -89,4 +89,30 @@ Then('I see different options', ()=>{
     usuario.paraComprar.checkForResults();
 })
 
-//TODO CASOS DE NAVEGACIÓN Y FAIL LOGIN
+
+Given('I selected log in',()=>{
+    usuario.paraIrHomepage.goToHomePage('es');
+    usuario.paraIrHomepage.checkHomePage();
+    usuario.paraIrHomepage.pressLogIn();
+    usuario.paraLogin.checkLogInpage();
+})
+
+When('I introduce wrong {string}',(mail)=>{
+    usuario.paraLogin.introduceUser(mail);
+})
+
+And('{string}',(password)=>{
+    usuario.paraLogin.introducePassword(password);
+
+})
+
+And('press enter', ()=>{
+    usuario.paraLogin.logIn();
+})
+
+Then('I got a error message',()=>{
+    usuario.paraLogin.errorWarning();
+})
+
+
+//TODO CASOS DE NAVEGACIÓN 
