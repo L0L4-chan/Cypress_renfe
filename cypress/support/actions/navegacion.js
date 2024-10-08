@@ -6,7 +6,9 @@ export class Navegacion{
  
 
 goTo(posicion){
-    this.elements.submenu().find('div').eq(posicion).find('a').click(); 
+    this.elements.submenu().find('div').eq(posicion).should('be.visible').click(); 
+
+
 }
 
 checkDestination(value){

@@ -55,6 +55,7 @@ Scenario Outline: Login
     When I introduce wrong "<user>"
     And "<password>"
     * press enter
+    * I solve the captcha
     Then I got a error message
 
 Examples:
@@ -69,5 +70,5 @@ Scenario Outline: Surfing
     Then I visit the "<Value>" page
 
 Examples:
-    | Key         | Value       |
-    | 2           |descuentos   |
+    | Key         | Value        |
+    | 2           | descuentos   |

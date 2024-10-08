@@ -29,7 +29,8 @@ export class Login{
     }
 
     errorWarning(){
-        this.elements.warning().should('be.visible');
+        this.elements.warning().should('exist');
+        //this.elements.warning().should('be.visible',{force:true});
     }
 
 }

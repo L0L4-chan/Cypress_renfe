@@ -109,11 +109,18 @@ And('{string}',(password)=>{
 
 And('press enter', ()=>{
     usuario.paraLogin.logIn();
+   
 })
 
-When('I solve the captcha', () => {
-   
-  });
+And('I solve the captcha', () => {
+    cy.intercept('POST', '**/recaptcha/api/siteverify', {
+        statusCode: 200,   // Código de estado HTTP 200
+        body: { success: true }  // Simular que el captcha fue exitoso
+      }).as('recaptchaVerify'); // Nombrar la interceptación
+      cy.get('iframe[src*="recaptcha"]').then($iframe => {
+        $iframe.css('display', 'none');
+})
+});
 
 Then('I got a error message',()=>{
     usuario.paraLogin.errorWarning();
