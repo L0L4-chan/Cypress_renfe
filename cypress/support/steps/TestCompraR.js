@@ -141,3 +141,29 @@ When('I press {string}',(key)=>{
 Then('I visit the {string} page',(value)=>{
     usuario.paraNavegar.checkDestination(value);
 })
+
+Given('I have a list of possibles itineraries', ()=>{
+    usuario.paraIrHomepage.goToHomePage('es');
+    usuario.paraIrHomepage.passCookieSettings();
+    usuario.paraIrHomepage.checkCookiesClose();
+    usuario.paraIrHomepage.checkHomePage();
+    usuario.paraComprar.fillUpTravelInfo('0', '2', '16', '19', '', '');
+    usuario.paraComprar.startSearch();
+    usuario.paraComprar.checkForResults();
+})
+
+When('I select {string}', (ida)=>{
+    usuario.paraComprar.selectTickets(ida);
+
+})
+
+And('I introduce the wrong data: {string}, {string}, {string}, {string}', (name, surname, id, phone)=>{
+
+    usuario.paraPago.personalData(name, surname, id, phone)
+})
+
+Then( ' I received error warning {int}',(error)=>{ 
+
+    usuario.paraPago.errorPersonalData(error);
+
+})

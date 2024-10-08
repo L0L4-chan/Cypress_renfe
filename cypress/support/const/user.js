@@ -3,6 +3,7 @@ import { Homepage } from '../actions/homepage';
 import { Lenguajes } from '../actions/lenguajes';
 import { Login} from   '../actions/login';
 import { Navegacion } from '../actions/navegacion';
+import { Payment } from '../actions/payment';
 
 export class User {
 
@@ -11,5 +12,5 @@ export class User {
     paraIrHomepage = new Homepage();
     paraLogin = new Login();
     paraNavegar= new Navegacion(); 
-
+    paraPago = new Payment();
 }

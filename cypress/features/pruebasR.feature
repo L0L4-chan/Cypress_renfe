@@ -63,7 +63,7 @@ Examples:
     | pepe@gmail.com  | 123456Ee   |
     | pepe2@gmail.com | 123456Ee   |
 
-@focus
+
 Scenario Outline: Surfing
     Given I am on a Renfe homepage
     When I press "<Key>"
@@ -72,3 +72,14 @@ Scenario Outline: Surfing
 Examples:
     | Key         | Value        |
     | 2           | descuentos   |
+
+@focus
+Scenario Outline:Purchase a ticket with wrong personal data
+    Given I have a list of possibles itineraries
+    When I select "<one>" 
+    And  I introduce the wrong data: "<name>", "<surname>", "<id>", "<phone>" 
+    Then I received error warning <error>
+
+Examples:
+    | one | name | surname | id       | phone     | error |
+    | 1   | lo   | ha      | 5555584m | 620405683 | 3     |

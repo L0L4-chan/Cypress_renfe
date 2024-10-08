@@ -13,8 +13,8 @@ noEnlace: ()=>  cy.get('#rf-check-box-trip-enlace > div > div > div > label'),
 plazaH:()=> cy.get('#rf-check-box-trip-accesibility > div > div > div > label'),
 asistencia:()=> cy.get('#rf-check-box-trip-assistence > div > div > div > label'),
 horaIda:()=>cy.get('#rf-check-box-trip-time-go > div > div > div > label'),
-horaVuelta:()=>cy.get('#rf-check-box-trip-time-round > div > div > div > label')
-
+horaVuelta:()=>cy.get('#rf-check-box-trip-time-round > div > div > div > label'),
+listaTrenesIda :()=> cy.get('#listaTrenesTBodyIda')
 
 }
 
@@ -122,5 +122,55 @@ timeLimit(modo, hora){
         }
     }
 }
+
+
+// Función para cerrar pop-ups si están visibles
+closePopUps() {
+    // Cierra el pop-up de Confirmación de Fare Upgrade si está visible
+    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').then(($el) => {
+        if ($el.is(':visible')) {
+            cy.wrap($el).click({ force: true });
+        }
+    });
+    
+    cy.get('#closeConfirmacionFareUpgrade > span').should('exist').then(($el) => {
+        if ($el.is(':visible')) {
+            cy.wrap($el).click({ force: true });
+        }
+    });
+}
+
+selectTickets(ida) {
+
+    cy.get('#tren_1_item' + ida).click();
+    
+    // Cierra pop-ups antes de continuar
+    //closePopUps();
+    
+    // Continuar con la selección de tickets
+    cy.get('#planes-opciones_i_1 > div:nth-child(1)').should('exist').click({ force: true });
+    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica > div.card-body')
+        .should('exist')
+        .click({ force: true });
+    
+    // Cerrar pop-ups después de la primera selección
+    closePopUps();
+    
+    cy.get('#btnSeleccionar').should('be.visible').should('exist').click({ force: true });
+
+    // Cerrar pop-ups nuevamente antes de continuar
+    closePopUps();
+
+    cy.get('#planes-opciones_v_1 > div:nth-child(2)').should('exist').click({ force: true });
+    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica > div.card-body')
+        .should('exist')
+        .click({ force: true });
+    
+    // Cerrar pop-ups al final
+    closePopUps();
+    
+    cy.get('#btnSeleccionar').should('be.visible').should('exist').click({ force: true });
+}
+
 
 }

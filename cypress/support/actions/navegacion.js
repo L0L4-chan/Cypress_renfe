@@ -14,4 +14,7 @@ goTo(posicion){
 checkDestination(value){
 this.elements.dirección().should('include', value);
 }
+
+
+
 }
