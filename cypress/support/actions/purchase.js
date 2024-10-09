@@ -25,6 +25,7 @@ fillUpTravelInfo(origen, dest,date1, date2, type, passanger ){
     //escogemos fecha de viaje
     cy.get('#first-input').trigger('mouseover').click();
     if(date2 == "") {
+        cy.get(' #trip-option > div.lightpick__trip-label.trip > label').should('exist').click({force:true});
         this.selectDate(date1);
     }else{
         this.selectDate(date1);
@@ -63,7 +64,6 @@ selectDate(date){
     cy.get('#daterangev2 > section > div.lightpick__inner > div.lightpick__months > section:nth-child(1) > div.lightpick__days > div:nth-child('+ date +')').trigger('mouseover').click(); 
 
 }
-
 startSearch(){
      this.elements.search().click();
 }
@@ -123,7 +123,7 @@ timeLimit(mode, time){
     }
 }
 
-
+/*
 // Función para cerrar pop-ups si están visibles
 closePopUps() {
     // Cierra el pop-up de Confirmación de Fare Upgrade si está visible
@@ -137,39 +137,49 @@ closePopUps() {
         if ($el.is(':visible')) {
             cy.wrap($el).click({ force: true });
         }
+
     });
-}
+
+    cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close > span').should('exist').then(($el) => {
+        if ($el.is(':visible')) {
+            cy.wrap($el).click({ force: true });
+        }
+
+    });
+    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close > span', { timeout: 0 })
+    .then(($el) => {
+      if ($el.is(':visible')) {
+          cy.wrap($el).click({ force: true });
+      }
+     }).catch(() => {
+      // Si no existe o no está visible, no se hace nada
+    });
+}*/
 
 selectTickets(go) {
 
-    cy.get('#tren_1_item' + go).click();
+    cy.get('#tren_i_' + go).click();
     
-    // Cierra pop-ups antes de continuar
-    //closePopUps();
-    
-    // Continuar con la selección de tickets
-    cy.get('#planes-opciones_i_1 > div:nth-child(1)').should('exist').click({ force: true });
-    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica > div.card-body')
-        .should('exist')
-        .click({ force: true });
-    
-    // Cerrar pop-ups después de la primera selección
-    closePopUps();
-    
-    cy.get('#btnSeleccionar').should('be.visible').should('exist').click({ force: true });
+    this.confirmations();
+    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close').click();
+ 
+}
 
-    // Cerrar pop-ups nuevamente antes de continuar
-    closePopUps();
-
-    cy.get('#planes-opciones_v_1 > div:nth-child(2)').should('exist').click({ force: true });
-    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica > div.card-body')
-        .should('exist')
-        .click({ force: true });
+confirmations(){
+    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica').should('exist').click({ force: true });
+    cy.get('#btnSeleccionar').should('exist').click({ force: true });
+    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
     
-    // Cerrar pop-ups al final
-    closePopUps();
-    
-    cy.get('#btnSeleccionar').should('be.visible').should('exist').click({ force: true });
+    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
+        if ($el.is(':visible')) {
+            cy.wrap($el).click({ force: true });
+        }});
+    cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
+            if ($el.is(':visible')) {
+                cy.wrap($el).click({ force: true });
+            }});
+   
+   
 }
 
 

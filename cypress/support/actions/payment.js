@@ -15,8 +15,7 @@ export class Payment{
 
 
 personalData(name,surname, id,phone){
-
-    this.elements.personalData().should('be.visible');
+    this.elements.DataP().should('be.visible');
     this.elements.name().type(name);
     this.elements.surname().type(surname);
     this.elements.numID().type(id);
