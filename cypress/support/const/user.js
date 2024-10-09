@@ -1,16 +1,16 @@
-import { Compras } from '../actions/compras';
+import { Purchase } from '../actions/purchase';
 import { Homepage } from '../actions/homepage';
-import { Lenguajes } from '../actions/lenguajes';
+import { Lenguages } from '../actions/lenguajes';
 import { Login} from   '../actions/login';
-import { Navegacion } from '../actions/navegacion';
+import { Navigation } from '../actions/navigation';
 import { Payment } from '../actions/payment';
 
 export class User {
 
-    paraComprar = new Compras();
-    paraLenguajes = new Lenguajes();
-    paraIrHomepage = new Homepage();
-    paraLogin = new Login();
-    paraNavegar= new Navegacion(); 
-    paraPago = new Payment();
+    shopping = new Purchase();
+    languages = new Lenguages();
+    goToHomepage = new Homepage();
+    forLogin = new Login();
+    forSurfing= new Navigation(); 
+    forPayment = new Payment();
 }

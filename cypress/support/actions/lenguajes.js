@@ -1,4 +1,4 @@
-export class Lenguajes {
+export class Lenguages {
 elements={
     menuIdiomas : () => cy.get('button[aria-label="Selector de idiomas"]'),
     listaIdiomas : () =>   cy.get('#languageList'),
@@ -13,12 +13,12 @@ elements={
         
         }
 
-    checkLanguajeWeAreOn(codigo){
-        this.elements.direccion().should('include', codigo);
+    checkLanguajeWeAreOn(code){
+        this.elements.direccion().should('include', code);
 
     }
 
-    changeLanguage(posicion){
-         this.elements.listaIdiomas().find('li').eq(posicion).find('a').click(); 
+    changeLanguage(position){
+         this.elements.listaIdiomas().find('li').eq(position).find('a').click(); 
     }
 }

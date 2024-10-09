@@ -5,27 +5,27 @@ export class Payment{
 
     elements = {
 
-        tablaDatosP : () =>  cy.get('body > article > div > div.row.ajustesMargenM > div.col-lg-8.ajustesPaddingM > div'),
-        nombre : () =>  cy.get('#nombre0'),
-        apellido : () =>  cy.get('#apellido10'),
+        DataP : () =>  cy.get('body > article > div > div.row.ajustesMargenM > div.col-lg-8.ajustesPaddingM > div'),
+        name : () =>  cy.get('#nombre0'),
+        surname : () =>  cy.get('#apellido10'),
         numID : () =>  cy.get('#documento0'),
-        telefono : () =>  cy.get('#telefono0'),
-        boton1 : () => cy.get('#submitpersonaliza'),
+        phone : () =>  cy.get('#telefono0'),
+        submitButton : () => cy.get('#submitpersonaliza'),
     }
 
 
 personalData(name,surname, id,phone){
 
     this.elements.personalData().should('be.visible');
-    this.elements.nombre().type(name);
-    this.elements.apellido().type(surname);
+    this.elements.name().type(name);
+    this.elements.surname().type(surname);
     this.elements.numID().type(id);
-    this.elements.telefono().type(phone);
+    this.elements.phone().type(phone);
     
 }
 
 sendPD(){
-    this.elements.boton1().should('be.visible').click();
+    this.elements.submitButton().should('be.visible').click();
 }
 
 correctPersonalData(){
