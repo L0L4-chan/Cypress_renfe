@@ -58,7 +58,7 @@ errorPersonalData(error){
             break;
             
         case 5:
-            cy.get('#errormail0').should('exist');
+            cy.get('#erroremail0').should('exist');
             break;
 
     }
