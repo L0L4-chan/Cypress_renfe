@@ -10,16 +10,18 @@ export class Payment{
         surname : () =>  cy.get('#apellido10'),
         numID : () =>  cy.get('#documento0'),
         phone : () =>  cy.get('#telefono0'),
+        email : () =>  cy.get('#email0'),
         submitButton : () => cy.get('#submitpersonaliza'),
     }
 
 
-personalData(name,surname, id,phone){
+personalData(name,surname, id, email, phone){
     cy.wait(2500);
     this.elements.DataP().should('be.visible');
     this.elements.name().type(name);
     this.elements.surname().type(surname);
     this.elements.numID().type(id);
+    this.elements.email().type(email)
     this.elements.phone().type(phone);
     
 }
@@ -53,6 +55,10 @@ errorPersonalData(error){
         
         case 4:
             cy.get('#errortelefono0').should('exist');
+            break;
+            
+        case 5:
+            cy.get('#errormail0').should('exist');
             break;
 
     }

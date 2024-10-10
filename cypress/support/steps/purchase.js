@@ -20,10 +20,9 @@ When('I select {string}', (go)=>{
 
 })
 
-And('I introduce the wrong data: {string}, {string}, {string}, {string}', (name, surname, id, phone)=>{
+And('I introduce the wrong data: {string}, {string}, {string}, {string}, {string}', (name, surname, id, email, phone)=>{
 
-    user.forPayment.personalData(name, surname, id, phone)
-    user.forPayment.sendPD();
+    user.forPayment.personalData(name, surname, id, email,phone)
 })
 
 Then( 'I received error warning {int}',(error)=>{ 
