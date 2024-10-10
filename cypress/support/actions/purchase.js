@@ -160,20 +160,65 @@ selectTickets(go) {
 
     cy.get('#tren_i_' + go).click();
     
-    this.confirmations();
-    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close').click();
- 
-}
-
-confirmations(){
+    cy.wait(500);
     cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica').should('exist').click({ force: true });
+    cy.wait(500);
     cy.get('#btnSeleccionar').should('exist').click({ force: true });
+    cy.wait(1500);
+    cy.get('.modal-footer > div > .container_check > .checkmark').should('exist').click({ force: true });
     cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
-    
+    cy.wait(1500);
     cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
         if ($el.is(':visible')) {
             cy.wrap($el).click({ force: true });
         }});
+    cy.wait(500);
+    cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
+            if ($el.is(':visible')) {
+                cy.wrap($el).click({ force: true });
+            }});
+   
+   
+
+    cy.get('#tren_v_' + go).click();
+    cy.wait(500);
+    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica').should('exist').click({ force: true });
+    cy.wait(500);
+    cy.get('#btnSeleccionar').should('exist').click({ force: true });
+    cy.wait(1500);
+    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
+    cy.wait(1500);
+    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
+        if ($el.is(':visible')) {
+            cy.wrap($el).click({ force: true });
+        }});
+    cy.wait(500);
+    cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
+            if ($el.is(':visible')) {
+                cy.wrap($el).click({ force: true });
+            }});
+   
+    cy.wait(2500);
+    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
+   
+ 
+}
+
+confirmations(){
+    cy.wait(500);
+    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica').should('exist').click({ force: true });
+    cy.wait(500);
+    cy.get('#btnSeleccionar').should('exist').click({ force: true });
+    cy.wait(1500);
+    cy.get('.modal-footer > div > .container_check > .checkmark').should('exist').click({ force: true });
+    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
+
+    cy.wait(1500);
+    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
+        if ($el.is(':visible')) {
+            cy.wrap($el).click({ force: true });
+        }});
+    cy.wait(500);
     cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
             if ($el.is(':visible')) {
                 cy.wrap($el).click({ force: true });
