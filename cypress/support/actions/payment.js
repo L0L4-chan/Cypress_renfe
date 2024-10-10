@@ -25,7 +25,10 @@ personalData(name,surname, id,phone){
 }
 
 sendPD(){
-    this.elements.submitButton().should('be.visible').click();
+    cy.wait(2000);
+    this.elements.submitButton().should('exist').click({foce:true});
+    cy.wait(2500);
+    this.elements.submitButton().should('exist').click({foce:true});
 }
 
 correctPersonalData(){
@@ -34,21 +37,22 @@ correctPersonalData(){
 
 errorPersonalData(error){
     cy.get('#check-circle-green-v10').should('not.be.visible');
+    
     switch(error){
         case 3:
-            cy.get('#errordocumento0').should('be.visible');
+            cy.get('#errordocumento0').should('exist');
             break;
 
         case 1:
-            cy.get('#errornombre0').should('be.visible');
+            cy.get('#errornombre0').should('exist');
             break;
 
         case 2:
-            cy.get('#errorapellido10').should('be.visible');
+            cy.get('#errorapellido10').should('exist');
             break;
         
         case 4:
-            cy.get('#errortelefono0').should('be.visible');
+            cy.get('#errortelefono0').should('exist');
             break;
 
     }

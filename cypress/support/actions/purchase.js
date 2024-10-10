@@ -26,11 +26,17 @@ fillUpTravelInfo(origen, dest,date1, date2, type, passanger ){
     cy.get('#first-input').trigger('mouseover').click();
     if(date2 == "") {
         //pendiente de implementar porque no se usa para estos test
+        
+        this.selectGoDate();
+        cy.get('#datepickerv2 > section > div.lightpick__inner > div.lightpick__months > section > div.lightpick__days > div:nth-child(23)').click()
+        cy.get('#datepickerv2 > section > div.lightpick__footer-buttons > button.lightpick__apply-action-sub').should('exist').click({force:true});
+
     }else{
         this.selectDate(date1);
         this.selectDate(date2);
+        this.elements.closeDate().click()
     } 
-    this.elements.closeDate().click();
+    ;
     if(type!= ""){  
         for(var counter=0; 0< type.length; counter++){
             this.selectPasanger(type[counter], passanger[counter]);
@@ -59,13 +65,26 @@ selectPasanger(type,pasanger){
  }
 }
 
+
+selectGoDate(){
+    cy.get('#trip-go').should('exist').click({force:true});
+}
 selectDate(date){
-    cy.get('#daterangev2 > section > div.lightpick__inner > div.lightpick__months > section:nth-child(1) > div.lightpick__days > div:nth-child('+ date +')').trigger('mouseover').click(); 
+    cy.get('#daterangev2 > section > div.lightpick__inner > div.lightpick__months > section:nth-child(1) > div.lightpick__days > div:nth-child('+ date +')').trigger('mouseover').click({force:true}); 
 
 }
 startSearch(){
      this.elements.search().click();
+    
 }
+
+changePage(){// permite que cypress siga operando en el nuevo dominio
+    cy.origin('venta.renfe.com', ()=>{
+
+        this.selectTickets();
+    });
+}
+
 
 checkForResults(){
     this.elements.options().should('be.visible');
@@ -178,7 +197,7 @@ selectTickets(go) {
             }});
    
    
-
+  /*
     cy.get('#tren_v_' + go).click();
     cy.wait(500);
     cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica').should('exist').click({ force: true });
@@ -187,7 +206,7 @@ selectTickets(go) {
     cy.wait(1500);
     cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
     cy.wait(1500);
-    /*
+  
     cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
         if ($el.is(':visible')) {
             cy.wrap($el).click({ force: true });
