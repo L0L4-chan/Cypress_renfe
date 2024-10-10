@@ -1,5 +1,6 @@
 Feature: Selecct navigation language
 
+@focus
 Scenario Outline: Select language
     Given I am on the "<Language1>" setting
     When I click on the language icon

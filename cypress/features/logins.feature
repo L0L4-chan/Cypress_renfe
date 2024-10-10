@@ -1,7 +1,7 @@
 Feature: Loging process
 
 
-
+@focus
 Scenario Outline: Login
     Given I selected log in
     When I introduce wrong "<user>"

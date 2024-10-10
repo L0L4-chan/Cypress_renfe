@@ -187,6 +187,7 @@ selectTickets(go) {
     cy.wait(1500);
     cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
     cy.wait(1500);
+    /*
     cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
         if ($el.is(':visible')) {
             cy.wrap($el).click({ force: true });

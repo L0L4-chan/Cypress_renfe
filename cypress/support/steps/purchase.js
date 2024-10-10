@@ -10,7 +10,7 @@ Given('I have a list of possibles itineraries', ()=>{
     user.goToHomepage.passCookieSettings();
     user.goToHomepage.checkCookiesClose();
     user.goToHomepage.checkHomePage();
-    user.shopping.fillUpTravelInfo('0', '2', '16', '19', '', '');
+    user.shopping.fillUpTravelInfo('0', '2', '16', '20', '', '');
     user.shopping.startSearch();
     user.shopping.checkForResults();
 })
