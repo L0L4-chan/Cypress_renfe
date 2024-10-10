@@ -28,7 +28,7 @@ fillUpTravelInfo(origen, dest,date1, date2, type, passanger ){
         //pendiente de implementar porque no se usa para estos test
         
         this.selectGoDate();
-        cy.get('#datepickerv2 > section > div.lightpick__inner > div.lightpick__months > section > div.lightpick__days > div:nth-child(23)').click()
+        cy.get('#datepickerv2 > section > div.lightpick__inner > div.lightpick__months > section > div.lightpick__days > div:nth-child('+date1+')').click()
         cy.get('#datepickerv2 > section > div.lightpick__footer-buttons > button.lightpick__apply-action-sub').should('exist').click({force:true});
 
     }else{

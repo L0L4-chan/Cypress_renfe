@@ -11,3 +11,4 @@ Examples:
     | one | name   | surname       | id       | email         |phone      | error |
     | 1   | sdfg   | kiernsli      | 5555584m | lodfhfdges    | 620405683 | 3     |
     | 1   | sdfg   | kiernsli      | 5555584m | lodfhfdges    | 620405683 | 5     |
+    | 1   | sdfg   | kiernsli      | 5555584m | lodfhfdges    | 05683     | 4     |
