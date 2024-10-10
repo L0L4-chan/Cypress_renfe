@@ -15,6 +15,7 @@ export class Payment{
 
 
 personalData(name,surname, id,phone){
+    cy.wait(2500);
     this.elements.DataP().should('be.visible');
     this.elements.name().type(name);
     this.elements.surname().type(surname);

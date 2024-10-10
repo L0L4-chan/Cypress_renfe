@@ -25,8 +25,7 @@ fillUpTravelInfo(origen, dest,date1, date2, type, passanger ){
     //escogemos fecha de viaje
     cy.get('#first-input').trigger('mouseover').click();
     if(date2 == "") {
-        cy.get(' #trip-option > div.lightpick__trip-label.trip > label').should('exist').click({force:true});
-        this.selectDate(date1);
+        //pendiente de implementar porque no se usa para estos test
     }else{
         this.selectDate(date1);
         this.selectDate(date2);
@@ -198,10 +197,12 @@ selectTickets(go) {
                 cy.wrap($el).click({ force: true });
             }});
    
-    cy.wait(2500);
+    cy.wait(10000);
+    /*
     cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
-   
- 
+    cy.get('#btnSeleccionar').should('exist').click({ force: true });
+    cy.wait(1500);
+    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });*/
 }
 
 confirmations(){

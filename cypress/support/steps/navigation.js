@@ -3,35 +3,35 @@ import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps';
 import { User } from '../const/user';
 
 
-const usuario = new User();
+const user = new User();
 
 
 Given('I introduce the url on my browser',  ()=>
 {
-    usuario.paraIrHomepage.goToHomePage('es');
+    user.goToHomepage.goToHomePage('es');
 });
 
 When('I reject the cookie settings', ()=>{
-    usuario.paraIrHomepage.passCookieSettings();
+    user.goToHomepage.passCookieSettings();
 });
 
 Then('I access the home page', ()=>{
-    usuario.paraIrHomepage.checkCookiesClose();
-    usuario.paraIrHomepage.checkHomePage();
+    user.goToHomepage.checkCookiesClose();
+    user.goToHomepage.checkHomePage();
 });
 
 
 Given('I am on a Renfe homepage',()=>{
-    usuario.paraIrHomepage.goToHomePage('es');
-    usuario.paraIrHomepage.passCookieSettings();
-    usuario.paraIrHomepage.checkHomePage();
+    user.goToHomepage.goToHomePage('es');
+    user.goToHomepage.passCookieSettings();
+    user.goToHomepage.checkHomePage();
 })
 
 When('I press {string}',(key)=>{
-    usuario.paraNavegar.goTo(key);
+    user.forSurfing.goTo(key);
 
 })
 
 Then('I visit the {string} page',(value)=>{
-    usuario.paraNavegar.checkDestination(value);
+    user.forSurfing.checkDestination(value);
 })
