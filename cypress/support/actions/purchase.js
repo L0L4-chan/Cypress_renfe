@@ -1,252 +1,252 @@
-export class Purchase{
-elements ={
-origen : () =>  cy.get('#origin'),
-destination : () =>  cy.get('#destination'),
-calendar : () => cy.get(),
-passanger : () =>  cy.get('#passangersSelection'),
-closeDate : () =>  cy.get('#daterangev2 > section > div.lightpick__footer-buttons > button.lightpick__apply-action-sub'),
-ClosedPassanger : ()=> cy.get('#passengersSelectionList > div > button.rf-passengers-alternative__button-list.rf-passengers-alternative__button-list--primary'),
-search :() =>  cy.get('#ticketSearchBt > div > div > button > div.mdc-button__touch.sc-rf-button'),
-options: ()=> cy.get('#stv-ida'),
-advance: () => cy.get('#search-more'),
-noLink: ()=>  cy.get('#rf-check-box-trip-enlace > div > div > div > label'),
-spotS:()=> cy.get('#rf-check-box-trip-accesibility > div > div > div > label'),
-help:()=> cy.get('#rf-check-box-trip-assistence > div > div > div > label'),
-goTime:()=>cy.get('#rf-check-box-trip-time-go > div > div > div > label'),
-backTime:()=>cy.get('#rf-check-box-trip-time-round > div > div > div > label'),
-listTrainsToGo :()=> cy.get('#listaTrenesTBodyIda')
+export class Purchase {
+  elements = {
+    origen: () => cy.get("#origin"),
+    destination: () => cy.get("#destination"),
+    calendar: () => cy.get(),
+    passanger: () => cy.get("#passangersSelection"),
+    closeDate: () =>
+      cy.get(
+        "#daterangev2 > section > div.lightpick__footer-buttons > button.lightpick__apply-action-sub"
+      ),
+    ClosedPassanger: () =>
+      cy.get(
+        "#passengersSelectionList > div > button.rf-passengers-alternative__button-list.rf-passengers-alternative__button-list--primary"
+      ),
+    search: () =>
+      cy.get(
+        "#ticketSearchBt > div > div > button > div.mdc-button__touch.sc-rf-button"
+      ),
+    options: () => cy.get("#stv-ida"),
+    advance: () => cy.get("#search-more"),
+    noLink: () => cy.get("#rf-check-box-trip-enlace > div > div > div > label"),
+    spotS: () =>
+      cy.get("#rf-check-box-trip-accesibility > div > div > div > label"),
+    help: () =>
+      cy.get("#rf-check-box-trip-assistence > div > div > div > label"),
+    goTime: () =>
+      cy.get("#rf-check-box-trip-time-go > div > div > div > label"),
+    backTime: () =>
+      cy.get("#rf-check-box-trip-time-round > div > div > div > label"),
+    listTrainsToGo: () => cy.get("#listaTrenesTBodyIda"),
+  };
 
-}
-
-fillUpTravelInfo(origen, dest,date1, date2, type, passanger ){
-    //escogemos origen y destino
+  fillUpTravelInfo(origen, dest, date1, date2, type, passanger) {
     this.selectOrigin(origen);
     this.selectDestination(dest);
-    //escogemos fecha de viaje
-    cy.get('#first-input').trigger('mouseover').click();
-    if(date2 == "") {
-        //pendiente de implementar porque no se usa para estos test
-        
-        this.selectGoDate();
-        cy.get('#datepickerv2 > section > div.lightpick__inner > div.lightpick__months > section > div.lightpick__days > div:nth-child('+date1+')').click()
-        cy.get('#datepickerv2 > section > div.lightpick__footer-buttons > button.lightpick__apply-action-sub').should('exist').click({force:true});
 
-    }else{
-        this.selectDate(date1);
-        this.selectDate(date2);
-        this.elements.closeDate().click()
-    } 
-    ;
-    if(type!= ""){  
-        for(var counter=0; 0< type.length; counter++){
-            this.selectPasanger(type[counter], passanger[counter]);
-        }
-    this.elements.ClosedPassanger().click();    
+    cy.get("#first-input").trigger("mouseover").click();
+    if (date2 == "") {
+      this.selectGoDate();
+      cy
+        .get(
+          "#datepickerv2 > section > div.lightpick__inner > div.lightpick__months > section > div.lightpick__days > div:nth-child(" +
+            date1 +
+            ")"
+        )
+        .click();
+      cy
+        .get(
+          "#datepickerv2 > section > div.lightpick__footer-buttons > button.lightpick__apply-action-sub"
+        )
+        .should("exist")
+        .click({ force: true });
+    } else {
+      this.selectDate(date1);
+      this.selectDate(date2);
+      this.elements.closeDate().click();
     }
-
-
-}
-
-selectOrigin(town){
-    this.elements.origen().click();
-    cy.get('#awesomplete_list_1_item_'+ town ).click({ force: true });
-}
-
-selectDestination(town){
-    this.elements.destination().click();
-    cy.get('#awesomplete_list_2_item_'+ town).click({ force: true });
-}
-
-selectPasanger(type,pasanger){
- this.elements.passanger().click(); 
-
- for(counter = 1; counter< parseInt(pasanger); counter++){
-    cy.get('#passengersSelectionList').find('li').eq(type).find('a').click(); 
- }
-}
-
-
-selectGoDate(){
-    cy.get('#trip-go').should('exist').click({force:true});
-}
-selectDate(date){
-    cy.get('#daterangev2 > section > div.lightpick__inner > div.lightpick__months > section:nth-child(1) > div.lightpick__days > div:nth-child('+ date +')').trigger('mouseover').click({force:true}); 
-
-}
-startSearch(){
-     this.elements.search().click();
-    
-}
-
-changePage(){// permite que cypress siga operando en el nuevo dominio
-    cy.origin('venta.renfe.com', ()=>{
-
-        this.selectTickets();
-    });
-}
-
-
-checkForResults(){
-    this.elements.options().should('be.visible');
-}
-
-advanceOptions(){
-    this.elements.advance().click({force: true});
-}
-
-selectAdvances(link,h,assistence,go,goTime,back, backTime){
-   var variables = {link,h,assistence,go,back};
-
-    for(var i=0; i< variables.length;i++){
-        switch(variables[i]){
-
-            case("sinEnlace"):
-                this.elements.noLink().click({force: true});
-                break;
-            case("H"):
-                this.elements.spotS().click({force: true});
-                break;
-            case("asistencia"):
-                this.elements.help().click({force: true});
-                break;
-            case("ida"):
-                this.elements.goTime().click({force: true});
-                this.timeLimit(1, goTime);
-                //todo poner la hora
-                break;
-            case("vuelta"):
-                this.elements.backTime().click({force: true});
-                this.timeLimit(0, backTime);
-                //todo poner la hora
-                break;
-        }
-}
-
-
-}
-
-
-timeLimit(mode, time){
-
-    if(mode){
-
-        for (var counter=0; counter< parseInt(time); counter){
-        cy.get('#idPreferenceAccesibility > div:nth-child(3) > fieldset > div > div.rf-preference-accesibility__trip > div > div > button:nth-child(3) > i').click({force: true});
-        }
-    }else{
-        
-        for (var counter=0; counter< parseInt(time); counter){
-        cy.get('#idPreferenceAccesibility > div:nth-child(3) > fieldset > div > div:nth-child(2) > div > div > div > button:nth-child(3) > i').click({force: true});
-        }
-    }
-}
-
-/*
-// Función para cerrar pop-ups si están visibles
-closePopUps() {
-    // Cierra el pop-up de Confirmación de Fare Upgrade si está visible
-    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').then(($el) => {
-        if ($el.is(':visible')) {
-            cy.wrap($el).click({ force: true });
-        }
-    });
-    
-    cy.get('#closeConfirmacionFareUpgrade > span').should('exist').then(($el) => {
-        if ($el.is(':visible')) {
-            cy.wrap($el).click({ force: true });
-        }
-
-    });
-
-    cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close > span').should('exist').then(($el) => {
-        if ($el.is(':visible')) {
-            cy.wrap($el).click({ force: true });
-        }
-
-    });
-    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close > span', { timeout: 0 })
-    .then(($el) => {
-      if ($el.is(':visible')) {
-          cy.wrap($el).click({ force: true });
+    if (type != "") {
+      for (var counter = 0; 0 < type.length; counter++) {
+        this.selectPasanger(type[counter], passanger[counter]);
       }
-     }).catch(() => {
-      // Si no existe o no está visible, no se hace nada
+      this.elements.ClosedPassanger().click();
+    }
+  }
+
+  selectOrigin(town) {
+    this.elements.origen().click();
+    cy.get("#awesomplete_list_1_item_" + town).click({ force: true });
+  }
+
+  selectDestination(town) {
+    this.elements.destination().click();
+    cy.get("#awesomplete_list_2_item_" + town).click({ force: true });
+  }
+
+  selectPasanger(type, pasanger) {
+    this.elements.passanger().click();
+
+    for (counter = 1; counter < parseInt(pasanger); counter++) {
+      cy.get("#passengersSelectionList").find("li").eq(type).find("a").click();
+    }
+  }
+
+  selectGoDate() {
+    cy.get("#trip-go").should("exist").click({ force: true });
+  }
+  selectDate(date) {
+    cy
+      .get(
+        "#daterangev2 > section > div.lightpick__inner > div.lightpick__months > section:nth-child(1) > div.lightpick__days > div:nth-child(" +
+          date +
+          ")"
+      )
+      .trigger("mouseover")
+      .click({ force: true });
+  }
+  startSearch() {
+    this.elements.search().click();
+  }
+
+  changePage() {
+    // permite que cypress siga operando en el nuevo dominio
+    cy.origin("venta.renfe.com", () => {
+      this.selectTickets();
     });
-}*/
+  }
 
-selectTickets(go) {
+  checkForResults() {
+    this.elements.options().should("be.visible");
+  }
 
-    cy.get('#tren_i_' + go).click();
-    
-    cy.wait(500);
-    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica').should('exist').click({ force: true });
-    cy.wait(500);
-    cy.get('#btnSeleccionar').should('exist').click({ force: true });
-    cy.wait(1500);
-    cy.get('.modal-footer > div > .container_check > .checkmark').should('exist').click({ force: true });
-    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
-    cy.wait(1500);
-    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
-        if ($el.is(':visible')) {
-            cy.wrap($el).click({ force: true });
-        }});
-    cy.wait(500);
-    cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
-            if ($el.is(':visible')) {
-                cy.wrap($el).click({ force: true });
-            }});
-   
-   
-  /*
-    cy.get('#tren_v_' + go).click();
-    cy.wait(500);
-    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica').should('exist').click({ force: true });
-    cy.wait(500);
-    cy.get('#btnSeleccionar').should('exist').click({ force: true });
-    cy.wait(1500);
-    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
-    cy.wait(1500);
-  
-    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
-        if ($el.is(':visible')) {
-            cy.wrap($el).click({ force: true });
-        }});
-    cy.wait(500);
-    cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
-            if ($el.is(':visible')) {
-                cy.wrap($el).click({ force: true });
-            }});
-   
-    cy.wait(10000);
-    /*
-    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
-    cy.get('#btnSeleccionar').should('exist').click({ force: true });
-    cy.wait(1500);
-    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });*/
-}
+  advanceOptions() {
+    this.elements.advance().click({ force: true });
+  }
 
-confirmations(){
+  selectAdvances(link, h, assistence, go, goTime, back, backTime) {
+    var variables = { link, h, assistence, go, back };
+
+    for (var i = 0; i < variables.length; i++) {
+      switch (variables[i]) {
+        case "sinEnlace":
+          this.elements.noLink().click({ force: true });
+          break;
+        case "H":
+          this.elements.spotS().click({ force: true });
+          break;
+        case "asistencia":
+          this.elements.help().click({ force: true });
+          break;
+        case "ida":
+          this.elements.goTime().click({ force: true });
+          this.timeLimit(1, goTime);
+          //todo poner la hora
+          break;
+        case "vuelta":
+          this.elements.backTime().click({ force: true });
+          this.timeLimit(0, backTime);
+          //todo poner la hora
+          break;
+      }
+    }
+  }
+
+  timeLimit(mode, time) {
+    if (mode) {
+      for (var counter = 0; counter < parseInt(time); counter) {
+        cy
+          .get(
+            "#idPreferenceAccesibility > div:nth-child(3) > fieldset > div > div.rf-preference-accesibility__trip > div > div > button:nth-child(3) > i"
+          )
+          .click({ force: true });
+      }
+    } else {
+      for (var counter = 0; counter < parseInt(time); counter) {
+        cy
+          .get(
+            "#idPreferenceAccesibility > div:nth-child(3) > fieldset > div > div:nth-child(2) > div > div > div > button:nth-child(3) > i"
+          )
+          .click({ force: true });
+      }
+    }
+  }
+
+  selectTickets(go) {
+    cy.get("#tren_i_" + go).click();
+
     cy.wait(500);
-    cy.get('#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica').should('exist').click({ force: true });
+    cy
+      .get(
+        "#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica"
+      )
+      .should("exist")
+      .click({ force: true });
     cy.wait(500);
-    cy.get('#btnSeleccionar').should('exist').click({ force: true });
+    cy.get("#btnSeleccionar").should("exist").click({ force: true });
     cy.wait(1500);
-    cy.get('.modal-footer > div > .container_check > .checkmark').should('exist').click({ force: true });
-    cy.get('#aceptarConfirmacionFareUpgrade').should('exist').click({ force: true });
+    cy
+      .get(".modal-footer > div > .container_check > .checkmark")
+      .should("exist")
+      .click({ force: true });
+    cy
+      .get("#aceptarConfirmacionFareUpgrade")
+      .should("exist")
+      .click({ force: true });
+    cy.wait(1500);
+    cy
+      .get(
+        "#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close "
+      )
+      .should("exist")
+      .then($el => {
+        if ($el.is(":visible")) {
+          cy.wrap($el).click({ force: true });
+        }
+      });
+    cy.wait(500);
+    cy
+      .get(
+        "#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close "
+      )
+      .should("exist")
+      .then($el => {
+        if ($el.is(":visible")) {
+          cy.wrap($el).click({ force: true });
+        }
+      });
+  }
+
+  confirmations() {
+    cy.wait(500);
+    cy
+      .get(
+        "#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica"
+      )
+      .should("exist")
+      .click({ force: true });
+    cy.wait(500);
+    cy.get("#btnSeleccionar").should("exist").click({ force: true });
+    cy.wait(1500);
+    cy
+      .get(".modal-footer > div > .container_check > .checkmark")
+      .should("exist")
+      .click({ force: true });
+    cy
+      .get("#aceptarConfirmacionFareUpgrade")
+      .should("exist")
+      .click({ force: true });
 
     cy.wait(1500);
-    cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
-        if ($el.is(':visible')) {
-            cy.wrap($el).click({ force: true });
-        }});
+    cy
+      .get(
+        "#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close "
+      )
+      .should("exist")
+      .then($el => {
+        if ($el.is(":visible")) {
+          cy.wrap($el).click({ force: true });
+        }
+      });
     cy.wait(500);
-    cy.get('#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close ').should('exist').then(($el) => {
-            if ($el.is(':visible')) {
-                cy.wrap($el).click({ force: true });
-            }});
-   
-   
-}
-
-
+    cy
+      .get(
+        "#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close "
+      )
+      .should("exist")
+      .then($el => {
+        if ($el.is(":visible")) {
+          cy.wrap($el).click({ force: true });
+        }
+      });
+  }
 }
