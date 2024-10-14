@@ -1,6 +1,6 @@
 Feature: Selecct navigation language
 
-@focus
+
 Scenario Outline: Select language
     Given I am on the Renfe website
     And I am on the "<Language1>" setting

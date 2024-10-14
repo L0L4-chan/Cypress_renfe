@@ -1,7 +1,7 @@
 Feature: search for a ticket as non User
 
 
- @focus
+
   Scenario Outline: Simple search for an itinerary
     Given I am on the Renfe website
     And I introduce the necessary info: "<origen>", "<destination>", "<go>", "<back>", "<type>", "<passanger>"
@@ -13,7 +13,7 @@ Feature: search for a ticket as non User
       | 0      | 2           | 16  | 19   |      |           |
       | 1      | 2           | 17  | 20   |      |           |
  
-  @focus
+  
   Scenario Outline: Search for an itinerary with more options
     Given I am on the Renfe website
     And I click on "Más opciones de búsqueda"

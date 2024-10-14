@@ -1,6 +1,6 @@
 Feature: purchase a ticket
 
-@focus
+
 Scenario Outline:Purchase a ticket with wrong personal data
     Given I am on the Renfe website
     And I have a list of possibles itineraries

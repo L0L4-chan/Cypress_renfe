@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.319" tests="7" failures="0" skipped="7">
+  <testsuite name="Root Suite" timestamp="2024-10-11T10:42:12" tests="0" file="language.feature" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Selecct navigation language" timestamp="2024-10-11T10:42:12" tests="7" time="0.299" failures="0">
+  </testsuite>
+</testsuites>
