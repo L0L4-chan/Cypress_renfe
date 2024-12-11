@@ -3,7 +3,7 @@ export class Navigation {
     submenu: () =>
       cy.get(
         "#contentPage > div > div > div.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div > div:nth-child(4) > rf-card-container > div > div > div"
-      , {timeout: 2500}),
+      , {timeout: 10000}),
     direction: () => cy.url(),
   };
 

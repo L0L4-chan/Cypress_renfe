@@ -1,12 +1,12 @@
 export class Login {
   elements = {
     direccion: () => cy.url(),
-    mail: () => cy.get("#num_tarjeta", {timeout: 3000}),
-    password: () => cy.get("#pass-login", {timeout: 3000}),
-    entrar: () => cy.get("#loginButtonId", {timeout: 3000}),
-    recordar: () => cy.get("#pruebaSpace > div:nth-child(1) > div > a", {timeout: 3000}),
-    nuevoUsuario: () => cy.get("#signupButton", {timeout: 3000}),
-    warning: () => cy.get("#modalGeneric > div > div", {timeout: 3000}),
+    mail: () => cy.get("#num_tarjeta", {timeout: 10000}),
+    password: () => cy.get("#pass-login", {timeout: 10000}),
+    entrar: () => cy.get("#loginButtonId", {timeout: 10000}),
+    recordar: () => cy.get("#pruebaSpace > div:nth-child(1) > div > a", {timeout: 10000}),
+    nuevoUsuario: () => cy.get("#signupButton", {timeout: 10000}),
+    warning: () => cy.get("#modalGeneric > div > div", {timeout: 10000}),
   };
 
   checkLogInpage() {

@@ -4,7 +4,7 @@ import { User } from "../const/user";
 const user = new User();
 
 Given("I have a list of possibles itineraries", () => {
-  user.shopping.fillUpTravelInfo("0", "2", "23", "", "", "");
+  user.shopping.fillUpTravelInfo("5", "2", "17", "20", "", "");
   user.shopping.startSearch();
   user.shopping.checkForResults();
 });

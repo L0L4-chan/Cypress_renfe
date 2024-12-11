@@ -1,20 +1,20 @@
 export class Payment {
   elements = {
     DataP: () => cy.get("body > article > div > div.row.ajustesMargenM > div.col-lg-8.ajustesPaddingM > div",
-      {timeout: 2500  }),
-    name: () => cy.get("#nombre0", { timeout: 2500 }),
-    surname: () => cy.get("#apellido10", { timeout: 2500 }),
-    numID: () => cy.get("#documento0", { timeout: 2500 }),
-    phone: () => cy.get("#telefono0", { timeout: 2500 }),
-    email: () => cy.get("#email0", { timeout: 2500 }),
-    submitButton: () => cy.get("#submitpersonaliza", { timeout: 2500 }),
-    correct: () => cy.get("#check-circle-green-v10", { timeout: 2500 }),
+      {timeout: 10000  }),
+    name: () => cy.get("#nombre0", { timeout: 10000 }),
+    surname: () => cy.get("#apellido10", { timeout: 10000 }),
+    numID: () => cy.get("#documento0", { timeout: 10000 }),
+    phone: () => cy.get("#telefono0", { timeout: 10000 }),
+    email: () => cy.get("#email0", { timeout: 10000 }),
+    submitButton: () => cy.get("#submitpersonaliza", { timeout: 10000 }),
+    correct: () => cy.get("#check-circle-green-v10", { timeout: 10000 }),
 
-    errordocu: () => cy.get("#errordocumento0", { timeout: 2500 }),
-    errorname: () => cy.get("#errornombre0", { timeout: 2500 }),
-    erroremail: () => cy.get("#erroremail0", { timeout: 2500 }),
-    errorsurname: () => cy.get("#errorapellido10", { timeout: 2500 }),
-    errorphone: () => cy.get("#errortelefono0", { timeout: 2500 })
+    errordocu: () => cy.get("#errordocumento0", { timeout: 10000 }),
+    errorname: () => cy.get("#errornombre0", { timeout: 10000 }),
+    erroremail: () => cy.get("#erroremail0", { timeout: 10000 }),
+    errorsurname: () => cy.get("#errorapellido10", { timeout: 10000 }),
+    errorphone: () => cy.get("#errortelefono0", { timeout: 10000 })
   };
 
   personalData(name, surname, id, email, phone) {

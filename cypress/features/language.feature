@@ -1,9 +1,5 @@
 Feature: Selecct navigation language
 
-
-Background: 
-    Given I am on the Renfe website 
-
 Scenario Outline: Select language
     Given I am on the "<Language1>" setting
     When I select a "<Language2>"

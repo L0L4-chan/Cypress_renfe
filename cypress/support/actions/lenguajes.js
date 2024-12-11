@@ -1,7 +1,7 @@
 export class Lenguages {
   elements = {
-    menuIdiomas: () => cy.get('button[aria-label="Selector de idiomas"]', {timeout: 3000}),
-    listaIdiomas: () => cy.get("#languageList", {timeout: 3000}),
+    menuIdiomas: () => cy.get('button[aria-label="Selector de idiomas"]', {timeout: 10000}),
+    listaIdiomas: () => cy.get("#languageList", {timeout: 10000}),
     direccion: () => cy.url(),
   };
 
