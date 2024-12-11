@@ -1,5 +1,7 @@
 export class Compras{
-
+ elements = {
+    reject: () => cy.get('#onetrust-reject-all-handler',{timeout: 3000}),
+   }
 goToHomePage(){
     cy.visit('https://www.renfe.com/es/es');
 }
@@ -7,7 +9,7 @@ goToHomePage(){
 passCookieSettings(){
     cy.window().then((win) => { //recoge el pop up
         cy.stub(win, 'prompt').returns('gfg');
-        cy.get('#onetrust-reject-all-handler').click();
+        this.elements.reject().click();
 
  });}
 

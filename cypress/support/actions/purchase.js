@@ -21,6 +21,8 @@ export class Purchase {
     input:()=> cy.get("#first-input",{timeout: 2500}),
     addpassanger:() => cy.get("#passengersSelectionList",{timeout: 2500}),
     to_go: () => cy.get("#rf-check-box-trip-to-go > div > div > div > label",{timeout: 2500}),
+  
+  
   };
 
   fillUpTravelInfo(origen, dest, date1, date2, type, passanger) {

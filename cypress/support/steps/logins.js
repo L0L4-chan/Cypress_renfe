@@ -3,7 +3,7 @@ import { User } from "../const/user";
 
 const user = new User();
 
-And("I selected log in", { jiraKey: 'CALC-1234' },() => {
+Given("I selected log in", { jiraKey: 'CALC-1234' },() => {
   user.goToHomepage.pressLogIn();
   user.forLogin.checkLogInpage();
 });

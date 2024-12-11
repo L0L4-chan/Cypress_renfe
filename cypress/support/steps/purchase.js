@@ -3,13 +3,13 @@ import { User } from "../const/user";
 
 const user = new User();
 
-And("I have a list of possibles itineraries", () => {
+Given("I have a list of possibles itineraries", () => {
   user.shopping.fillUpTravelInfo("0", "2", "23", "", "", "");
   user.shopping.startSearch();
   user.shopping.checkForResults();
 });
 
-And("I select the ticket {string}", go => {
+Given("I select the ticket {string}", go => {
   user.shopping.selectTickets(go);
 });
 

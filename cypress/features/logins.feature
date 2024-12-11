@@ -1,10 +1,10 @@
 Feature: Loging process
 
-
+Background: 
+    Given I am on the Renfe website
 @focus
 Scenario Outline: Fail login with wrong credentials
-    Given I am on the Renfe website
-    And I selected log in
+    Given I selected log in
     And I introduce wrong "<user>" and "<password>"
     When I press enter
     And I solve the captcha

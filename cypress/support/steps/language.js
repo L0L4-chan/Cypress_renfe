@@ -3,7 +3,7 @@ import { User } from "../const/user";
 
 const user = new User();
 
-And("I am on the {string} setting", languaje1 => {
+Given("I am on the {string} setting", languaje1 => {
   user.goToHomepage.goToHomePage(languaje1);
   user.goToHomepage.checkHomePage();
   user.languages.checkLanguajeWeAreOn(languaje1);

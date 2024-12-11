@@ -1,7 +1,9 @@
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 import { User } from "../const/user";
+import { Common } from "../const/common";
 //we include here repeat steps example give: 'we start on the home page'
 const user = new User();
+const common = new Common();
 
 Given("I am on the Renfe website", () => {
   user.goToHomepage.goToHomePage("es");
@@ -16,7 +18,7 @@ And("I solve the captcha", () => {
       body: { success: true },
     })
     .as("recaptchaVerify");
-  cy.get('iframe[src*="recaptcha"]').then($iframe => {
+  common.elements.captcha().then($iframe => {
     $iframe.css("display", "none");
   });
 });

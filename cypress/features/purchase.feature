@@ -1,10 +1,10 @@
 Feature: purchase a ticket
-
-
-Scenario Outline:Purchase a ticket with wrong personal data
+ 
+Background: 
     Given I am on the Renfe website
-    And I have a list of possibles itineraries
-    And I select the ticket "<one>" 
+    Given I have a list of possibles itineraries
+Scenario Outline:Purchase a ticket with wrong personal data    
+    Given I select the ticket "<one>" 
     When  I introduce the wrong data: "<name>", "<surname>", "<id>", "<email>", "<phone>" 
     Then I received error warning <error>
 

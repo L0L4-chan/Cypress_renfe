@@ -3,7 +3,7 @@ import { User } from "../const/user";
 
 const user = new User();
 
-And(
+Given(
   "I introduce the necessary info: {string}, {string}, {string}, {string}, {string}, {string}",
   (origen, destino, ida, vuelta, typo, pasajero) => {
     user.shopping.fillUpTravelInfo(
@@ -25,7 +25,7 @@ Then("I see different options", () => {
   user.shopping.checkForResults();
 });
 
-And('I click on "Más opciones de búsqueda"', () => {
+GIven('I click on "Más opciones de búsqueda"', () => {
   user.shopping.advanceOptions();
 });
 
