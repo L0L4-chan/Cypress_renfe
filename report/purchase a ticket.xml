@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0.187" tests="3" failures="0" skipped="3">
-  <testsuite name="Root Suite" timestamp="2024-12-11T09:50:38" tests="0" file="purchase.feature" time="0.000" failures="0">
+<testsuites name="Mocha Tests" time="21.780" tests="3" failures="3">
+  <testsuite name="Root Suite" timestamp="2024-12-11T10:29:38" tests="0" file="purchase.feature" time="0.000" failures="0">
   </testsuite>
-  <testsuite name="purchase a ticket" timestamp="2024-12-11T09:50:38" tests="3" time="0.167" failures="0">
+  <testsuite name="purchase a ticket" timestamp="2024-12-11T10:29:38" tests="3" time="21.716" failures="0">
   </testsuite>
 </testsuites>

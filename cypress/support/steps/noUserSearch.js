@@ -25,7 +25,7 @@ Then("I see different options", () => {
   user.shopping.checkForResults();
 });
 
-GIven('I click on "Más opciones de búsqueda"', () => {
+Given('I click on "Más opciones de búsqueda"', () => {
   user.shopping.advanceOptions();
 });
 

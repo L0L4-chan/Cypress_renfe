@@ -8,7 +8,7 @@ Scenario Outline: Fail login with wrong credentials
     And I introduce wrong "<user>" and "<password>"
     When I press enter
     And I solve the captcha
-    Then I got a error message
+    Then I got an error message
 
 Examples:
     | user            | password   |

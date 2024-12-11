@@ -17,6 +17,6 @@ When("I press enter", () => {
   user.forLogin.logIn();
 });
 
-Then("I got a error message", () => {
+Then("I got an error message", () => {
   user.forLogin.errorWarning();
 });
