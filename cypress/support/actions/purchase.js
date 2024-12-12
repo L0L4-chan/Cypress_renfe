@@ -147,7 +147,7 @@ export class Purchase {
   }
 
   selectTickets(go) {
-
+    node = 
     this.startMutationObserver(node, this.handlePopups)
     cy.get("#tren_i_" + go, {timeout: 10000}).click();
     cy
@@ -232,7 +232,7 @@ export class Purchase {
       const targetNode = cy.get('body'); 
       this.actions.startMutationObserver(targetNode[0], (mutation) => {
         mutation.addedNodes.forEach((node) => {
-          if (node.nodeType === 1 && node.classList.contains('modal')) {//revisar como detectar pop ups
+          if (node.nodeType === 1 && node.classList.contains('modal_fade_show')) {//revisar como detectar pop ups
             cy.wrap(node).should('be.visible'); 
             cy.wrap(node).find('.close-button').click(); 
           }
