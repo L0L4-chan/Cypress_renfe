@@ -28,7 +28,7 @@ module.exports = defineConfig({
       return config
     },
     env: {
-    //TAGS: '@focus'
+    TAGS: '@focus'
   }
   },
   video: true,

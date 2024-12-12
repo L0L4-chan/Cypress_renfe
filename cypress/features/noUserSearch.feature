@@ -12,8 +12,8 @@ Feature: search for a ticket as non User
     Examples:
       | origen | destination | go  | back | type | passanger |
       | 1      | 2           | 17  | 20   |      |           |
- 
-@focus   
+
+
   Scenario Outline: Search for an itinerary with more options
     Given I click on "Más opciones de búsqueda"
     And I introduce the necessary info: "<origen2>", "<destination2>", "<go2>", "<back2>", "<type2>", "<passanger2>", "<link>", "<h>", "<help>", "<goMin>", "<goTime>", "<backMin>", "<backTime>"
@@ -21,7 +21,7 @@ Feature: search for a ticket as non User
     Then I see different options
 
     Examples:
-      | origen2 | destination2 | go2  | back2 | type2 | passanger2 | link     | h   | help       | goMin | goTime | backMin | backTime |
-      | 1       | 2            | 17   | 20   |       |            | sinEnlace|     |            |       |        |         |          |
-      | 1       | 2            | 17   | 20    |       |            |          | H   | asistencia |       |        |         |          |
+      | origen2 | destination2 | go2  | back2 | type2 | passanger2 | link      | h   | help       | goMin | goTime | backMin | backTime |
+      | 1       | 2            | 17   | 20    |       |            | sinEnlace |     |            |       |        |         |          |
+      | 1       | 2            | 17   | 20    |       |            |           | H   | asistencia |       |        |         |          |
 

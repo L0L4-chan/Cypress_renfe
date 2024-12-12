@@ -4,8 +4,8 @@ Background:
     Given I am on the Renfe website
 
 Scenario: Access to home page   
-  When I reject the cookie settings
-  Then I access the home page
+    When I reject the cookie settings
+    Then I access the home page
 
 
 Scenario Outline: Visit different link on Renfe website

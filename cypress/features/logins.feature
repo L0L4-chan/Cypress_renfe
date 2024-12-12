@@ -2,7 +2,7 @@ Feature: Loging process
 
 Background: 
     Given I am on the Renfe website
-@focus
+
 Scenario Outline: Fail login with wrong credentials
     Given I selected log in
     And I introduce wrong "<user>" and "<password>"

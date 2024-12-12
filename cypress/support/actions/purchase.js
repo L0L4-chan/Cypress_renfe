@@ -21,25 +21,28 @@ export class Purchase {
     input:()=> cy.get("#first-input",{timeout: 10000}),
     addpassanger:() => cy.get("#passengersSelectionList",{timeout: 10000}),
     to_go: () => cy.get("#rf-check-box-trip-to-go > div > div > div > label",{timeout: 10000}),
-  
-  
+    list1: () => cy.get("#awesomplete_list_1",{timeout: 10000}),
+    list2: () => cy.get("#awesomplete_list_2", {timeout: 10000}),
+    calendar: () => cy.get('[style="top: 250px; left: 1223.5px;"] > .lightpick__inner > .lightpick__months',{timeout: 10000}),
+    popupclose: ()=>cy.get('#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close > span', {timeout:10000}), 
   };
 
   fillUpTravelInfo(origen, dest, date1, date2, type, passanger) {
     this.selectOrigin(origen);
     this.selectDestination(dest);
 
-    this.elements.input().trigger("mouseover").click();
+    this.elements.input().trigger("mouseover").click({ force: true });
     if (date2 == "") {
       this.selectGoDate();
-      cy
-        .get(
-          "#datepickerv2 > section > div.lightpick__inner > div.lightpick__months > section > div.lightpick__days > div:nth-child(" +
-            date1 +
-            ")",{timeout: 10000}
-        )
-        .click();
-        this.elements.applydate().should("exist").click({ force: true });
+  
+      cy.get(
+        `#datepickerv2 > section > div.lightpick__inner > div.lightpick__months > section > div.lightpick__days > div:nth-child(${date1})`,
+        { timeout: 10000 }
+      )
+        .should('not.have.class', 'is-disabled') 
+        .click({ force: true });
+  
+      this.elements.applydate().should("exist").click({ force: true });
     } else {
       this.selectDate(date1);
       this.selectDate(date2);
@@ -55,12 +58,12 @@ export class Purchase {
 
   selectOrigin(town) {
     this.elements.origen().click();
-    cy.get("#awesomplete_list_1_item_" + town,{timeout: 10000}).click({ force: true });
+    this.elements.list1().should('be.visible').find('li[role="option"]').eq(town).click({ force: true });
   }
 
   selectDestination(town) {
     this.elements.destination().click();
-    cy.get("#awesomplete_list_2_item_" + town,{timeout: 10000}).click({ force: true });
+    this.elements.list2().should('be.visible').find('li[role="option"]').eq(town).click({ force: true });
   }
 
   selectPasanger(type, pasanger) {
@@ -75,21 +78,13 @@ export class Purchase {
     this.elements.to_go().should("exist").click({ force: true });
   }
   selectDate(date) {
-    cy
-      .get(
-        "#daterangev2 > section > div.lightpick__inner > div.lightpick__months > section:nth-child(1) > div.lightpick__days > div:nth-child(" +
-          date +
-          ")", {timeout: 10000}
-      )
-      .trigger("mouseover")
-      .click({ force: true });
+    this.elements.calendar().find("div.lightpick__days").contains(date).click({ force: true });
   }
   startSearch() {
     this.elements.search().click();
   }
 
   changePage() {
-    // permite que cypress siga operando en el nuevo dominio
     cy.origin("venta.renfe.com", () => {
       this.selectTickets();
     });
@@ -152,10 +147,12 @@ export class Purchase {
   }
 
   selectTickets(go) {
+
+    this.startMutationObserver(node, this.handlePopups)
     cy.get("#tren_i_" + go, {timeout: 10000}).click();
     cy
       .get(
-        "#planes-opciones_i_1 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica",{timeout: 10000}
+        "#planes-opciones_i_2 > div.estilo-box-card.seleccion-resumen-bottom.card.bg-light.mb-3.tarifaBasica",{timeout: 10000}
       )
       .should("exist")
       .click({ force: true });
@@ -164,30 +161,12 @@ export class Purchase {
       .get(".modal-footer > div > .container_check > .checkmark",{timeout: 10000})
       .should("exist")
       .click({ force: true });
+
     cy
       .get("#aceptarConfirmacionFareUpgrade",{timeout: 10000})
       .should("exist")
       .click({ force: true });
-    cy
-      .get(
-        "#modalInciConf_i_1 > .modal-dialog > .modal-content > .modal-header > .close ",{timeout: 10000}
-      )
-      .should("exist")
-      .then($el => {
-        if ($el.is(":visible")) {
-          cy.wrap($el).click({ force: true });
-        }
-      });
-    cy
-      .get(
-        "#modalGeneric > .modal-dialog > .modal-content > .modal-header > .close ",{timeout: 10000}
-      )
-      .should("exist")
-      .then($el => {
-        if ($el.is(":visible")) {
-          cy.wrap($el).click({ force: true });
-        }
-      });
+    cy.get('[style="margin: 0"] > #resumenSelected > .fluid-container > .total-slim > .rowitem2 > #btnSeleccionar').click({force: true}); 
   }
 
   confirmations() {
@@ -228,4 +207,36 @@ export class Purchase {
         }
       });
   }
+
+  startMutationObserver(targetNode, callback) {
+    const config = { childList: true, subtree: true };
+
+    this.observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          callback(mutation);
+        }
+      }
+    });
+    this.observer.observe(targetNode, config);
+  }
+
+  stopMutationObserver() {
+    if (this.observer) {
+      this.observer.disconnect();
+      this.observer = null;
+    }
+  }
+
+    handlePopups() {
+      const targetNode = cy.get('body'); 
+      this.actions.startMutationObserver(targetNode[0], (mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === 1 && node.classList.contains('modal')) {//revisar como detectar pop ups
+            cy.wrap(node).should('be.visible'); 
+            cy.wrap(node).find('.close-button').click(); 
+          }
+        });
+      });
+    }
 }

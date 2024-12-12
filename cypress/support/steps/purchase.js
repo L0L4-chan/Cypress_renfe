@@ -4,7 +4,10 @@ import { User } from "../const/user";
 const user = new User();
 
 Given("I have a list of possibles itineraries", () => {
-  user.shopping.fillUpTravelInfo("5", "2", "17", "20", "", "");
+
+  var dayout= new Date().getDay();
+  var dayreturn = dayout+1;
+  user.shopping.fillUpTravelInfo(1 ,2,dayout ,dayreturn , "", "");
   user.shopping.startSearch();
   user.shopping.checkForResults();
 });
