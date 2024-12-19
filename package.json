@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "open": "cypress open --config-file cypress.config.js",
+    "run": "cypress run --config-file cypress.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -10,12 +12,14 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@cucumber/cucumber": "^11.0.1",
+    "@cucumber/cucumber": "^11.1.0",
     "@types/chai": "^5.0.0",
     "@types/cucumber": "^6.0.1",
-    "cypress": "^13.15.0",
-    "cypress-cucumber-preprocessor": "^4.3.1"
-  }, 
+    "cypress": "^13.16.1",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-plugin-xhr-toggle": "^1.2.1",
+    "cypress-xray-junit-reporter": "^1.1.7"
+  },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
     "step_definitions": "cypress/support/steps"
