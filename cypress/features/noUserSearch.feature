@@ -3,7 +3,6 @@ Feature: search for a ticket as non User
     Background:
         Given I am on the Renfe website 
 
-@focus 
   Scenario Outline: Simple search for an itinerary
     Given I introduce the necessary info: "<origen>", "<destination>", "<go>", "<back>", "<type>", "<passanger>"
     When I press "Buscar billete"

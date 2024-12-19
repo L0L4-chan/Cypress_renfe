@@ -4,7 +4,6 @@ Background:
     Given I am on the Renfe website
     Given I have a list of possibles itineraries
 
-@focus 
 Scenario Outline:Purchase a ticket with wrong personal data    
     Given I select the ticket "<one>" 
     When  I introduce the wrong data: "<name>", "<surname>", "<id>", "<email>", "<phone>" 
